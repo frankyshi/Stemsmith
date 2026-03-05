@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from pathlib import Path
 import uuid
 
-from ..main import UPLOADS_DIR
+from ..paths import UPLOADS_DIR
 
 
 router = APIRouter(tags=["upload"])

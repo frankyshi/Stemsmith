@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from pathlib import Path
 from typing import List
 
-from ..main import STEMS_DIR
+from ..paths import STEMS_DIR
 from ..services.demucs_service import split_into_stems
 
 
