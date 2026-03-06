@@ -94,9 +94,14 @@ def split_to_stems(input_path: Path, output_dir: Path) -> List[Dict[str, str]]:
         if not model_root.exists():
             raise RuntimeError(f"Demucs output directory not found at {model_root}")
 
-        track_dirs = [p for p in model_root.iterdir() if p.is_dir()]
-        if not track_dirs:
-            raise RuntimeError(f"No track output found under {model_root}")
+        # Detect whether stems are directly under model_root
+        if (model_root / "vocals.wav").exists():
+            track_dir = model_root
+        else:
+            track_dirs = [p for p in model_root.iterdir() if p.is_dir()]
+            if not track_dirs:
+                raise RuntimeError(f"No track output found under {model_root}")
+            track_dir = track_dirs[0]
 
         track_dir = track_dirs[0]
         logger.info("Using Demucs track output directory %s", track_dir)

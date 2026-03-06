@@ -38,7 +38,7 @@ function UploadAudio({
       }
 
       const splitResult = await splitTrack(newFileId);
-      setStems(splitResult.stems ?? []);
+      setStems(Array.isArray(splitResult?.stems) ? splitResult.stems : []);
 
       if (setStatusMessage) {
         setStatusMessage("Processing complete. Stems are ready.");

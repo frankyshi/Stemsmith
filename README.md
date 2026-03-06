@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ### Run the backend
 
 ```bash
-cd backend
+cd . # Go back to the stem-splitter directory
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
@@ -103,4 +103,3 @@ Comments in that file outline the expected responsibilities:
 
 Once that logic is implemented, the existing API routes and frontend skeleton
 can be wired up to provide full end‑to‑end stem splitting.
-

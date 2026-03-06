@@ -53,26 +53,22 @@ async def split_track(file_id: str):
 
 @router.get("/stems/{file_id}")
 async def list_stems(file_id: str) -> dict:
-    """
-    List existing stems in STEMS_DIR/<file_id>/.
-
-    Returns the normalized stems array with URLs for playback/download.
-    """
     stems_root = Path(STEMS_DIR) / file_id
     if not stems_root.exists():
         raise HTTPException(status_code=404, detail="Stems not found")
 
     stems: List[Dict[str, str]] = []
-    for stem_name in SUPPORTED_STEMS:
-        stem_path = stems_root / f"{stem_name}.wav"
-        if stem_path.is_file():
-            stems.append(
-                {
-                    "name": stem_name,
-                    "filename": stem_path.name,
-                    "url": f"/api/download/{file_id}?stem={stem_name}",
-                }
-            )
+
+    for wav in stems_root.glob("*.wav"):
+        stem_name = wav.stem
+
+        stems.append(
+            {
+                "name": stem_name,
+                "filename": wav.name,
+                "url": f"/api/download/{file_id}?stem={stem_name}",
+            }
+        )
 
     return {"file_id": file_id, "stems": stems}
 
