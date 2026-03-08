@@ -1,3 +1,4 @@
+import ConvertToMp3 from "../components/ConvertToMp3.jsx";
 import UploadAudio from "../components/UploadAudio.jsx";
 import ProcessingStatus from "../components/ProcessingStatus.jsx";
 import StemPlayer from "../components/StemPlayer.jsx";
@@ -30,10 +31,11 @@ function Home() {
             Stem Splitter
           </h1>
           <p style={{ color: "#9ca3af" }}>
-            Upload a track, split it into stems, and preview or download the
-            results.
+            Import from YouTube or upload a track, then split it into stems and preview or download.
           </p>
         </header>
+
+        <ConvertToMp3 setFileId={setFileId} setStatusMessage={setStatusMessage} />
 
         <UploadAudio
           fileId={fileId}

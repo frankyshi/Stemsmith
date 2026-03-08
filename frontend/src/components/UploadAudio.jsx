@@ -16,6 +16,24 @@ function UploadAudio({
     setError(null);
   };
 
+  const runSplitOnly = async () => {
+    if (!fileId) return;
+    try {
+      setIsProcessing(true);
+      setError(null);
+      if (setStatusMessage) setStatusMessage("Splitting stems…");
+      const splitResult = await splitTrack(fileId);
+      setStems(Array.isArray(splitResult?.stems) ? splitResult.stems : []);
+      if (setStatusMessage) setStatusMessage("Processing complete. Stems are ready.");
+    } catch (e) {
+      const message = e?.message || "Stem splitting failed.";
+      setError(message);
+      if (setStatusMessage) setStatusMessage(message);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   const handleUpload = async () => {
     if (!selectedFile) {
       setError("Please choose an audio file first.");
@@ -65,10 +83,10 @@ function UploadAudio({
       }}
     >
       <h2 style={{ fontSize: "1.25rem", marginBottom: "0.75rem" }}>
-        Upload audio
+        Convert mp3 to stems
       </h2>
       <p style={{ fontSize: "0.9rem", color: "#9ca3af", marginBottom: "1rem" }}>
-        Choose a song or audio file to split into separate stems.
+        Upload an audio file, or use the mp3 from above, then split into separate stems.
       </p>
 
       <div
@@ -106,6 +124,25 @@ function UploadAudio({
         >
           Upload & Split
         </button>
+        {fileId && (
+          <button
+            type="button"
+            onClick={runSplitOnly}
+            disabled={isProcessing}
+            style={{
+              padding: "0.6rem 1.4rem",
+              borderRadius: "999px",
+              border: "1px solid rgba(148, 163, 184, 0.7)",
+              backgroundColor: "transparent",
+              color: "#e5e7eb",
+              cursor: isProcessing ? "not-allowed" : "pointer",
+              fontWeight: 600,
+              opacity: isProcessing ? 0.5 : 1
+            }}
+          >
+            Split to stems
+          </button>
+        )}
       </div>
 
       {error && (

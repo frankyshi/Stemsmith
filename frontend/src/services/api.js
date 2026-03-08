@@ -21,6 +21,15 @@ async function handleJsonResponse(response) {
   return data;
 }
 
+export async function importYouTubeAudio(url) {
+  const response = await fetch(`${API_BASE}/import/youtube`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: url.trim() })
+  });
+  return handleJsonResponse(response);
+}
+
 export async function uploadAudio(file) {
   const formData = new FormData();
   formData.append("file", file);
