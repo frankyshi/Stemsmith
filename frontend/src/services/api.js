@@ -5,10 +5,11 @@ async function handleJsonResponse(response) {
   try {
     data = await response.json();
   } catch (e) {
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-    return null;
+    console.error("[api] handleJsonResponse:", e);
+    const msg = response.ok
+      ? "Invalid response from server."
+      : `Request failed with status ${response.status}`;
+    throw new Error(msg);
   }
 
   if (!response.ok) {
@@ -19,6 +20,15 @@ async function handleJsonResponse(response) {
   }
 
   return data;
+}
+
+export async function importYouTubeAudio(url) {
+  const response = await fetch(`${API_BASE}/import/youtube`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: url.trim() })
+  });
+  return handleJsonResponse(response);
 }
 
 export async function uploadAudio(file) {
@@ -37,7 +47,14 @@ export async function splitTrack(fileId) {
   const response = await fetch(`${API_BASE}/split/${fileId}`, {
     method: "POST"
   });
-  return handleJsonResponse(response);
+  const data = await handleJsonResponse(response);
+  if (!data || typeof data !== "object") {
+    throw new Error("Invalid response from server.");
+  }
+  return {
+    ...data,
+    stems: Array.isArray(data.stems) ? data.stems : []
+  };
 }
 
 export async function listStems(fileId) {

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .routes import upload, split
+from .routes import upload, split, import_routes
 from .paths import UPLOADS_DIR, STEMS_DIR
 
 
@@ -20,6 +20,7 @@ def create_app() -> FastAPI:
     # Include route modules
     app.include_router(upload.router, prefix="/api")
     app.include_router(split.router, prefix="/api")
+    app.include_router(import_routes.router, prefix="/api")
 
     @app.get("/")
     async def health() -> dict:
