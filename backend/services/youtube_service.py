@@ -48,7 +48,10 @@ def download_youtube_audio_as_mp3(url: str, output_path: Path) -> int:
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # yt-dlp: extract audio, no playlist, output as mp3 (uses ffmpeg)
+    # yt-dlp: extract audio, no playlist, output as mp3 (uses ffmpeg).
+    # Use web_embedded player client to avoid 403 Forbidden when the default web
+    # client hits YouTube's SABR/restrictions (see yt-dlp issue #12482, #12561).
+    # Some videos with embedding disabled may still be unavailable.
     cmd = [
         "yt-dlp",
         "--no-playlist",
@@ -57,6 +60,8 @@ def download_youtube_audio_as_mp3(url: str, output_path: Path) -> int:
         "mp3",
         "--audio-quality",
         "0",
+        "--extractor-args",
+        "youtube:player_client=web_embedded",
         "-o",
         str(output_path),
         url.strip(),

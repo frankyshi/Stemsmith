@@ -136,3 +136,19 @@ At a high level:
 - The backend locates the uploaded/imported MP3 in `uploads/`
 - It runs Demucs (htdemucs) to generate the 4 standard stems
 - It writes stem WAV files to `stems/{file_id}/` and exposes them via download/list endpoints
+
+---
+
+## Troubleshooting
+
+### YouTube import: 403 Forbidden or "video may be unavailable or restricted"
+
+The app uses the `web_embedded` player client to reduce 403 errors. If imports still fail:
+
+1. **Update yt-dlp** to the latest version (YouTube changes often; newer releases include fixes):
+   ```bash
+   pip install -U yt-dlp
+   # or: brew upgrade yt-dlp
+   ```
+2. Use **Python 3.10+** for the backend (yt-dlp has deprecated 3.9; some fixes require 3.10+).
+3. Some videos have embedding disabled and cannot be downloaded with `web_embedded`; try another video or upload the file directly.
