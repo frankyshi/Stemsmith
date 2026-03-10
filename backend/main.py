@@ -6,12 +6,12 @@ from .paths import UPLOADS_DIR, STEMS_DIR
 
 def create_app() -> FastAPI:
     """
-    Application factory for the Stem Splitter backend.
+    Application factory for the Stemsmith backend.
 
     This configures the FastAPI app, ensures required directories exist,
     and includes all API routes.
     """
-    app = FastAPI(title="Stem Splitter API")
+    app = FastAPI(title="Stemsmith API")
 
     # Ensure required directories exist
     UPLOADS_DIR.mkdir(parents=True, exist_ok=True)

@@ -1,5 +1,5 @@
 """
-Utility helpers for the Stem Splitter backend.
+Utility helpers for the Stemsmith backend.
 
 Use this package for shared helpers such as:
     - Path resolution
