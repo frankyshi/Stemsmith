@@ -102,16 +102,51 @@ function Home() {
           <h1
             style={{
               fontFamily: "\"CollegiateBlackFLF\", var(--font-heading)",
-              fontSize: "clamp(2.4rem, 5.3vw, 3.6rem)",
+              fontSize: "clamp(2.2rem, 4.8vw, 3.5rem)",
               fontWeight: 700,
-              letterSpacing: "0.14em",
+              letterSpacing: "0.16em",
               margin: "0 0 0.9rem",
-              color: "var(--color-text)",
               textTransform: "uppercase",
-              textShadow: "0 0 52px var(--color-accent-subtle)"
+              lineHeight: 1.2,
+              backgroundImage:
+                "linear-gradient(135deg, #e5e7eb 0%, #c4b5fd 32%, #a855f7 68%, #22d3ee 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              textShadow: "0 0 52px rgba(88, 28, 135, 0.6)"
             }}
           >
-            STEM SPLITTER FOR SAMPLING SPECIALISTS
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(2.3rem, 5.2vw, 3.6rem)",
+                letterSpacing: "0.2em",
+                marginBottom: "0.08rem"
+              }}
+            >
+              Stem Splitter
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(0.85rem, 1.8vw, 1.05rem)",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                opacity: 0.7,
+                marginBottom: "0.08rem"
+              }}
+            >
+              For the
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(1.9rem, 4.2vw, 3rem)",
+                letterSpacing: "0.16em"
+              }}
+            >
+              Sampling Enthusiast
+            </span>
           </h1>
           <p
             style={{
