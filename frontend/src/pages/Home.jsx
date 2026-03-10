@@ -4,14 +4,28 @@ import ProcessingStatus from "../components/ProcessingStatus.jsx";
 import StemPlayer from "../components/StemPlayer.jsx";
 import { useState } from "react";
 
-/* Curated slots so images stay well-separated; center (content area) kept clear. */
+/* Curated slots around viewport edges; center kept clear. Many images, varied size/opacity/drift. */
 const FLOATING_ART_CONFIG = [
-  { src: "/images/mbdtf.jpg", top: "6%", left: "3%", size: "clamp(120px, 16vw, 220px)", anim: "float-slow", duration: 28, delay: 0, opacity: 0.28 },
-  { src: "/images/tpab.jpg", top: "10%", left: "78%", size: "clamp(100px, 14vw, 200px)", anim: "float-slower", duration: 34, delay: -8, opacity: 0.26 },
-  { src: "/images/astroworld.jpg", top: "54%", left: "0%", size: "clamp(110px, 15vw, 210px)", anim: "drift", duration: 36, delay: -12, opacity: 0.24 },
-  { src: "/images/graduation.jpg", top: "48%", left: "82%", size: "clamp(100px, 14vw, 190px)", anim: "float-slow", duration: 30, delay: -18, opacity: 0.27 },
-  { src: "/images/damn.jpg", top: "76%", left: "5%", size: "clamp(100px, 14vw, 195px)", anim: "float-slower", duration: 32, delay: -5, opacity: 0.25 },
-  { src: "/images/iamiwas.jpg", top: "74%", left: "72%", size: "clamp(110px, 15vw, 205px)", anim: "drift", duration: 38, delay: -22, opacity: 0.26 },
+  { src: "/images/mbdtf.jpg", top: "4%", left: "2%", size: "clamp(100px, 12vw, 180px)", anim: "drift-right", duration: 62, delay: 0, opacity: 0.48 },
+  { src: "/images/tpab.jpg", top: "5%", left: "18%", size: "clamp(70px, 9vw, 130px)", anim: "drift-down", duration: 58, delay: -10, opacity: 0.42 },
+  { src: "/images/astroworld.jpg", top: "8%", left: "82%", size: "clamp(100px, 12vw, 180px)", anim: "drift-left", duration: 65, delay: -5, opacity: 0.45 },
+  { src: "/images/graduation.jpg", top: "12%", left: "92%", size: "clamp(70px, 9vw, 130px)", anim: "drift-up", duration: 60, delay: -15, opacity: 0.44 },
+  { src: "/images/808s%20and%20heartbreak.jpg", top: "25%", left: "0%", size: "clamp(120px, 15vw, 220px)", anim: "drift-diagonal-a", duration: 70, delay: -20, opacity: 0.4 },
+  { src: "/images/late%20registration.jpg", top: "28%", left: "88%", size: "clamp(100px, 12vw, 180px)", anim: "drift-diagonal-b", duration: 68, delay: -8, opacity: 0.46 },
+  { src: "/images/ye.jpg", top: "55%", left: "0%", size: "clamp(100px, 12vw, 180px)", anim: "drift-right", duration: 64, delay: -25, opacity: 0.44 },
+  { src: "/images/levon%20james.jpg", top: "52%", left: "90%", size: "clamp(100px, 12vw, 180px)", anim: "drift-left", duration: 66, delay: -12, opacity: 0.45 },
+  { src: "/images/damn.jpg", top: "75%", left: "3%", size: "clamp(100px, 12vw, 180px)", anim: "drift-up", duration: 58, delay: -30, opacity: 0.46 },
+  { src: "/images/one%20of%20wun.jpg", top: "78%", left: "20%", size: "clamp(70px, 9vw, 130px)", anim: "drift-diagonal-a", duration: 72, delay: -18, opacity: 0.42 },
+  { src: "/images/iamiwas.jpg", top: "76%", left: "78%", size: "clamp(100px, 12vw, 180px)", anim: "drift-down", duration: 62, delay: -22, opacity: 0.44 },
+  { src: "/images/jesus%20is%20king.jpg", top: "80%", left: "92%", size: "clamp(70px, 9vw, 130px)", anim: "drift-left", duration: 60, delay: -28, opacity: 0.45 },
+  { src: "/images/the%20college%20dropout.jpg", top: "18%", left: "5%", size: "clamp(70px, 9vw, 130px)", anim: "float-arc", duration: 75, delay: -14, opacity: 0.43 },
+  { src: "/images/nas.jpg", top: "35%", left: "85%", size: "clamp(70px, 9vw, 130px)", anim: "drift-right", duration: 66, delay: -6, opacity: 0.44 },
+  { src: "/images/grandson.jpg", top: "65%", left: "8%", size: "clamp(70px, 9vw, 130px)", anim: "drift-up", duration: 70, delay: -24, opacity: 0.42 },
+  { src: "/images/watch%20the%20throne.jpg", top: "70%", left: "82%", size: "clamp(70px, 9vw, 130px)", anim: "float-arc", duration: 68, delay: -16, opacity: 0.46 },
+  { src: "/images/issa.jpg", top: "42%", left: "2%", size: "clamp(80px, 10vw, 150px)", anim: "drift-down", duration: 63, delay: -11, opacity: 0.43 },
+  { src: "/images/maad%20city.jpg", top: "38%", left: "92%", size: "clamp(80px, 10vw, 150px)", anim: "drift-up", duration: 67, delay: -19, opacity: 0.44 },
+  { src: "/images/yeezus.jpg", top: "22%", left: "75%", size: "clamp(80px, 10vw, 150px)", anim: "drift-diagonal-b", duration: 69, delay: -7, opacity: 0.45 },
+  { src: "/images/life%20of%20pablo.jpg", top: "88%", left: "65%", size: "clamp(80px, 10vw, 150px)", anim: "drift-left", duration: 61, delay: -26, opacity: 0.44 },
 ];
 
 function Home() {
