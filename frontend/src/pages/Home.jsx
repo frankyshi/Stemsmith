@@ -95,18 +95,19 @@ function Home() {
           style={{
             marginBottom: "3rem",
             textAlign: "center",
-            paddingTop: "2.25rem",
+            paddingTop: "3rem",
             paddingBottom: "2rem",
             borderBottom: "1px solid rgba(148, 163, 184, 0.22)"
           }}
         >
           <h1
             style={{
-              fontFamily: "\"CollegiateBlackFLF\", var(--font-heading)",
+              fontFamily: "Acme, var(--font-heading)",
+              fontSize: "clamp(3rem, 6vw, 5rem)",
               fontWeight: 700,
+              letterSpacing: "0.08em",
               margin: "0 0 0.9rem",
-              textTransform: "uppercase",
-              lineHeight: 1.25,
+              lineHeight: 1.1,
               backgroundImage:
                 "linear-gradient(135deg, #e5e7eb 0%, #c4b5fd 32%, #a855f7 68%, #22d3ee 100%)",
               WebkitBackgroundClip: "text",
@@ -115,36 +116,7 @@ function Home() {
               textShadow: "0 0 52px rgba(88, 28, 135, 0.6)"
             }}
           >
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
-                letterSpacing: "0.2em",
-                marginBottom: "0.4rem"
-              }}
-            >
-              STEM SPLITTER
-            </span>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(1.15rem, 2.4vw, 1.45rem)",
-                letterSpacing: "0.22em",
-                opacity: 0.92,
-                marginBottom: "0.4rem"
-              }}
-            >
-              FOR THE
-            </span>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
-                letterSpacing: "0.2em"
-              }}
-            >
-              SAMPLING ENTHUSIAST
-            </span>
+            STEMSMITH
           </h1>
           <p
             style={{
@@ -158,7 +130,7 @@ function Home() {
               marginRight: "auto"
             }}
           >
-            Convert any source to MP3, then split it into its stems - vocals, drums, bass, and more. Built for isolating vocals, flipping samples, building drum kits, and turning rough ideas into records!
+            Convert any source to MP3, then split it into stems—vocals, drums, bass, and more. Perfect for isolating vocals, flipping samples, building drum kits, and shaping rough ideas into records.
           </p>
         </header>
 

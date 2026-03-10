@@ -12,8 +12,8 @@
   font-display: swap;
 }
 
-/* Modern sans + display pairing for music-tech startup feel */
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+/* Hero title: Acme; UI: Space Grotesk + Inter */
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
   --color-bg: #050508;
