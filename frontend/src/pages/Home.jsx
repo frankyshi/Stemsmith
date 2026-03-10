@@ -96,36 +96,36 @@ function Home() {
             marginBottom: "3rem",
             textAlign: "center",
             paddingBottom: "2rem",
-            borderBottom: "1px solid var(--color-surface-border)"
+            borderBottom: "1px solid rgba(148, 163, 184, 0.22)"
           }}
         >
           <h1
             style={{
-              fontFamily: "var(--font-heading)",
-              fontSize: "clamp(2.25rem, 5vw, 3.25rem)",
+              fontFamily: "\"CollegiateBlackFLF\", var(--font-heading)",
+              fontSize: "clamp(2.4rem, 5.3vw, 3.6rem)",
               fontWeight: 700,
-              letterSpacing: "0.08em",
-              margin: "0 0 0.75rem",
+              letterSpacing: "0.14em",
+              margin: "0 0 0.9rem",
               color: "var(--color-text)",
               textTransform: "uppercase",
-              textShadow: "0 0 48px var(--color-accent-subtle)"
+              textShadow: "0 0 52px var(--color-accent-subtle)"
             }}
           >
-            Stem Splitter
+            Built for the underdog producer
           </h1>
           <p
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "1rem",
-              lineHeight: 1.5,
+              fontSize: "0.98rem",
+              lineHeight: 1.6,
               color: "var(--color-text-muted)",
               margin: 0,
-              maxWidth: "36ch",
+              maxWidth: "40ch",
               marginLeft: "auto",
               marginRight: "auto"
             }}
           >
-            Convert any source to MP3, then split into stems—vocals, drums, bass, and more.
+            Convert any source to MP3, then split it into stems—vocals, drums, bass, and more. Built for isolating vocals, flipping samples, building drum kits, and turning rough ideas into records.
           </p>
         </header>
 

@@ -6,23 +6,26 @@ function ProcessingStatus({ isProcessing, fileId, statusMessage }) {
   return (
     <section
       style={{
-        backgroundColor: "var(--color-surface)",
+        background:
+          "radial-gradient(circle at top left, rgba(79, 70, 229, 0.26), transparent 55%), " +
+          "radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.14), transparent 55%), " +
+          "var(--color-surface)",
         borderRadius: "var(--radius-card)",
-        padding: "1.25rem 1.75rem",
-        marginBottom: "1.5rem",
+        padding: "1.3rem 1.8rem",
+        marginBottom: "1.6rem",
         border: "1px solid var(--color-surface-border)",
         boxShadow: "var(--shadow-card)",
-        backdropFilter: "blur(12px)"
+        backdropFilter: "blur(18px)"
       }}
     >
       <h2
         style={{
           fontFamily: "var(--font-heading)",
-          fontSize: "1.05rem",
-          marginBottom: "0.5rem",
+          fontSize: "1rem",
+          marginBottom: "0.45rem",
           color: "var(--color-text)",
-          fontWeight: 700,
-          letterSpacing: "0.04em",
+          fontWeight: 600,
+          letterSpacing: "0.1em",
           textTransform: "uppercase"
         }}
       >
