@@ -1,13 +1,23 @@
-# stem-splitter
+# Stemsmith
 
-Skeleton full‑stack project for an audio stem separation app.
+AI-powered music processing tool that converts media into isolated audio stems.
 
-The app is split into a React frontend and a FastAPI backend. Audio files are
-uploaded to the backend, processed with an AI model (Demucs), and exposed as
-separate stems (vocals, drums, bass, other) for preview and download.
+Stemsmith is a full-stack web application that allows users to:
 
-> **Note**: This repository currently contains a clean project skeleton only.
-> The actual Demucs integration and full business logic are left as TODOs.
+- Convert YouTube videos → MP3
+- Convert video files (MP4/MOV) → MP3
+- Split MP3 files into stems (vocals, drums, bass, other) using Demucs
+
+The system is built with a React frontend and a FastAPI backend. Media files are processed using yt-dlp, FFmpeg, and Demucs, then returned to the client for playback and download.
+
+## Features
+
+- YouTube → MP3 conversion
+- Video → MP3 extraction (MP4 / MOV)
+- AI stem separation using Demucs
+- FastAPI backend for media processing
+- Audio playback for generated stems
+- Downloadable output files
 
 ---
 
@@ -19,11 +29,13 @@ separate stems (vocals, drums, bass, other) for preview and download.
   - `routes/` – API route modules
     - `upload.py` – `POST /api/upload`
     - `split.py` – `POST /api/split/{file_id}`, `GET /api/stems/{file_id}`, `GET /api/download/{file_id}`
-  - `services/demucs_service.py` – placeholder for Demucs integration
-  - `models/` – placeholder for Pydantic models
-  - `utils/` – placeholder for shared utilities
-- `uploads/` – where uploaded audio files will be stored
-- `stems/` – where processed stems will be stored
+  - `services/demucs_service.py` – Demucs stem separation (vocals/drums/bass/other)
+  - `services/youtube_service.py` – YouTube import (yt-dlp + FFmpeg)
+  - `services/mp4_service.py` – Video → MP3 conversion (FFmpeg)
+  - `models/` – Pydantic models (request/response schemas)
+  - `utils/` – shared utilities/helpers
+- `uploads/` – stored uploaded/imported audio files (MP3)
+- `stems/` – generated stem outputs (WAV per stem)
 
 ---
 
@@ -68,22 +80,22 @@ pip install -r requirements.txt
 ### Run the backend
 
 ```bash
-cd .. # Go back to the stem-splitter directory
+cd .. # Go back to the Stemsmith project root
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 The API will be available at `http://localhost:8000` and the interactive docs
 at `http://localhost:8000/docs`.
 
-### Key endpoints (skeleton)
+### Key endpoints
 
 - `POST /api/upload` – accept an uploaded audio file and return a `file_id`
-- `POST /api/split/{file_id}` – placeholder endpoint to trigger Demucs stem splitting
+- `POST /api/split/{file_id}` – run Demucs stem splitting for an uploaded/imported file
 - `GET /api/stems/{file_id}` – list available stems for a given `file_id`
-- `GET /api/download/{file_id}` – placeholder endpoint for downloading a stem
-
-Implementation details (validation, persistence, real Demucs inference, and
-file downloads) are intentionally left as TODOs in the code.
+- `GET /api/download/{file_id}` – download a stem WAV by name (query param `stem`)
+- `POST /api/import/youtube` – import YouTube audio to MP3 (yt-dlp + FFmpeg)
+- `POST /api/import/mp4` – convert uploaded video to MP3 (FFmpeg)
+- `GET /api/download-original/{file_id}` – download the original uploaded/imported MP3
 
 ---
 
@@ -113,18 +125,14 @@ uses the `/api/*` endpoints defined above. You can change the base URL in
 
 ---
 
-## Where to implement AI audio processing
+## AI audio processing (Demucs)
 
-The placeholder for Demucs integration lives in:
+Demucs processing is implemented in:
 
 - `backend/services/demucs_service.py`
 
-Comments in that file outline the expected responsibilities:
+At a high level:
 
-- Load and configure the Demucs model
-- Run source separation on the uploaded audio file
-- Save stems (vocals, drums, bass, other) into the `stems/` directory
-- Return the list of generated stem files to the API layer
-
-Once that logic is implemented, the existing API routes and frontend skeleton
-can be wired up to provide full end‑to‑end stem splitting.
+- The backend locates the uploaded/imported MP3 in `uploads/`
+- It runs Demucs (htdemucs) to generate the 4 standard stems
+- It writes stem WAV files to `stems/{file_id}/` and exposes them via download/list endpoints

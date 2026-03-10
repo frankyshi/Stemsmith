@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Vite config for the Stem Splitter frontend.
+// Vite config for the Stemsmith frontend.
 // Proxies /api requests to the FastAPI backend on localhost:8000.
 export default defineConfig({
   plugins: [react()],
