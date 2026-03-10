@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const COVER_SIZE_MIN = 88;
-const COVER_SIZE_MAX = 118;
+const COVER_SIZE_MIN = 140;
+const COVER_SIZE_MAX = 190;
 const SPEED_MIN = 18;
 const SPEED_MAX = 42;
 const MARGIN = 100;
-const MIN_DISTANCE = 120;
+const MIN_DISTANCE = 180;
 const OPACITY_MIN = 0.38;
 const OPACITY_MAX = 0.5;
 const COVER_COUNT_DESKTOP = 18;

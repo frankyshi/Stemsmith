@@ -5,6 +5,7 @@ import StemPlayer from "../components/StemPlayer.jsx";
 import { useState } from "react";
 import { useFloatingCovers } from "../hooks/useFloatingCovers.js";
 
+// Master pool of album art; hook only shows a subset at once.
 const FLOATING_ART_IMAGES = [
   "/images/mbdtf.jpg",
   "/images/tpab.jpg",
@@ -26,6 +27,22 @@ const FLOATING_ART_IMAGES = [
   "/images/maad%20city.jpg",
   "/images/yeezus.jpg",
   "/images/life%20of%20pablo.jpg",
+  "/images/444.jpg",
+  "/images/scorpion.jpg",
+  "/images/wlr.jpg",
+  "/images/hardstone%20psycho.jpg",
+  "/images/the%20blueprint.jpg",
+  "/images/future.jpg",
+  "/images/utopia.jpg",
+  "/images/ds2.jpg",
+  "/images/rodeo.jpg",
+  "/images/gnx.jpg",
+  "/images/the%20blueprint%203.jpg",
+  "/images/be.jpg",
+  "/images/die%20lit.jpg",
+  "/images/take%20care.jpg",
+  "/images/nothing%20was%20the%20same.jpg",
+  "/images/octane.jpg",
 ];
 
 function Home() {
