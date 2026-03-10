@@ -78,7 +78,7 @@ const primaryButtonStyle = (disabled) => ({
 const resultBlockStyle = {
   marginTop: "1.25rem",
   padding: "1rem",
-  borderRadius: "var(--radius-button)",
+  borderRadius: "var(--radius-card)",
   background: "var(--color-bg-elevated)",
   border: "1px solid var(--color-surface-border)"
 };
